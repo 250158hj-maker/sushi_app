@@ -112,7 +112,7 @@ class ProductController extends Controller
     {
         // TODO: Product モデルの $product を削除
         // SQL: DELETE FROM products WHERE id = :id
-        // $product->delete();
+        $product->delete();
 
         return redirect()->route('admin.product.index');
     }
