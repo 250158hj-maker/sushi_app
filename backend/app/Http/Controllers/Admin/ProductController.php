@@ -102,7 +102,7 @@ class ProductController extends Controller
         // SQL: UPDATE products 
         //      SET name = :name, category_id = :category_id, price = :price, image_path = :image_path 
         //      WHERE id = :id
-        // $product->update($data);
+        $product->update($data);
 
         // 更新後は、商品一覧ページにリダイレクト
         return redirect()->route('admin.product.index');
