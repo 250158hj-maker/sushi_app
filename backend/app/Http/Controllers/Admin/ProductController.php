@@ -60,16 +60,15 @@ class ProductController extends Controller
     {
         // TODO: POSTリクエストから、name, category_id, price を取得
         // $_POST['name'], $_POST['category_id'], $_POST['price'] から取得するイメージ
-        // $data = $request->safe()->only(['name', 'category_id', 'price']);
-
+        $data = $request->safe()->only(['name', 'category_id', 'price']);
         // TODO: 画像ファイルがアップロードされている場合は、画像を保存してパスを$dataに追加する
         // $_FILES['image'] から画像ファイルがアップロードされているか確認するイメージ
-        // $data['image_path'] = $request->storeImage() ?? '';
+        $data['image_path'] = $request->storeImage() ?? '';
 
         // TODO: Product モデルにデータを保存する
         // SQL: INSERT INTO products (name, category_id, price, image_path) 
         //      VALUES (:name, :category_id, :price, :image_path)
-        // Product::query()->create($data);
+        Product::query()->create($data);
 
         // 保存後は、商品一覧ページにリダイレクト
         // header('Location: admin/product/index') するイメージ
