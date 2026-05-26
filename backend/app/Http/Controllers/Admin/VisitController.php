@@ -18,17 +18,17 @@ class VisitController extends Controller
         $visits = collect();
         // TODO: Visit モデルから、全ての来店情報を取得して、updated_at の降順で並び替える
         // SQL: SELECT * FROM visits ORDER BY updated_at DESC
-        // $visits = Visit::query()
-        //     ->orderByDesc('updated_at')
-        //     ->get();
+        $visits = Visit::query()
+            ->orderByDesc('updated_at')
+            ->get();
 
         $checkoutHistory = collect();
         // TODO: Visit モデルから、来店情報を取得して、updated_at の降順で並び替える
         // SQL: SELECT * FROM visits WHERE status IN ('billed', 'paid') ORDER BY updated_at DESC
-        // $checkoutHistory = Visit::query()
-        //     ->whereIn('status', ['billed', 'paid'])
-        //     ->orderByDesc('updated_at')
-        //     ->get();
+        $checkoutHistory = Visit::query()
+            ->whereIn('status', ['billed', 'paid'])
+            ->orderByDesc('updated_at')
+            ->get();
 
         return view('admin.visit.index', [
             'visits' => $visits,
