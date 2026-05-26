@@ -38,9 +38,11 @@ export default function OrderingPage() {
 
         <section className="grid grid-cols-[minmax(0,1.8fr)_minmax(280px,0.7fr)] gap-[18px] max-[900px]:grid-cols-1">
           <div className="rounded-[28px] border border-slate-200 bg-white p-[22px]">
-            {/* TODO: CategoryTabs を表示 */}
-            {/* props: categories, selectedCategory, onChange */}
-            CategoryTabs コンポーネントを表示
+            <CategoryTabs
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onChange={handleCategoryChange}
+            />
             <ProductGrid
               loading={isProductsLoading}
               products={products}
