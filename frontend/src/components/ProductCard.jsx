@@ -1,5 +1,5 @@
-import { buildAssetUrl } from '../utils/assetUrl';
-import { formatPrice } from '../utils/formatPrice';
+import { buildAssetUrl } from "../utils/assetUrl";
+import { formatPrice } from "../utils/formatPrice";
 
 export default function ProductCard({ disabled, onSelectProduct, product }) {
   return (
@@ -11,19 +11,18 @@ export default function ProductCard({ disabled, onSelectProduct, product }) {
     >
       <div className="p-2 pb-0">
         <div className="mx-auto flex h-32 w-32 items-center justify-center overflow-hidden rounded-2xl">
-          {/* TODO: 商品画像を表示: buildAssetUrl() を使用 */}
           <img
             className="h-full w-full object-contain"
-            src=""
+            src={buildAssetUrl(product.image_path)}
             alt={product.name}
           />
         </div>
         <div className="pb-2 text-sm font-semibold text-slate-600">
-          {/* TODO: 価格を表示 */}
+          {formatPrice(product.price)}円
         </div>
       </div>
       <div className="bg-sky-600 px-3 py-2 text-base font-semibold leading-6 text-white">
-        {/* TODO: 商品名を表示 */}
+        {product.name}
       </div>
     </button>
   );
