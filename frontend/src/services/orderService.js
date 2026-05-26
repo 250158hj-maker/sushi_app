@@ -1,4 +1,7 @@
-const apiBaseUrl = String(import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '');
+const apiBaseUrl = String(import.meta.env.VITE_API_BASE_URL ?? "").replace(
+  /\/+$/,
+  "",
+);
 
 // 注文データ取得 API
 export async function loadOrders(visitId, options = {}) {
@@ -7,7 +10,7 @@ export async function loadOrders(visitId, options = {}) {
   }
 
   // TODO: エンドポイント: api/order/fetch?visit_id={visitId}
-  let url = `${apiBaseUrl}`;
+  let url = `${apiBaseUrl}/api/order/fetch`;
   // クエリパラメータを URL に追加
   url += `?visit_id=${encodeURIComponent(String(visitId))}`;
 
@@ -17,7 +20,7 @@ export async function loadOrders(visitId, options = {}) {
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(payload.error ?? payload.message ?? 'API request failed');
+    throw new Error(payload.error ?? payload.message ?? "API request failed");
   }
 
   return { orders: payload.orders ?? [], total: payload.total ?? 0 };
@@ -34,15 +37,15 @@ export async function submitOrder(visitId, product, quantity, options = {}) {
   // 3. body: JSON　で { product_id, quantity, visit_id }
   const response = await fetch(url, {
     ...options,
-    method: '',
-    headers: { 'Content-Type': '', ...(options.headers ?? {}) },
+    method: "",
+    headers: { "Content-Type": "", ...(options.headers ?? {}) },
     body: JSON.stringify(),
   });
   // レスポンスの JSON をパースして、payload 変数に格納
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(payload.error ?? payload.message ?? 'API request failed');
+    throw new Error(payload.error ?? payload.message ?? "API request failed");
   }
 
   return payload;
@@ -54,14 +57,14 @@ export async function checkoutOrder(visitId, options = {}) {
   const url = `${apiBaseUrl}/api/order/billed`;
   const response = await fetch(url, {
     ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...(options.headers ?? {}) },
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...(options.headers ?? {}) },
     body: JSON.stringify({ visit_id: Number(visitId) }),
   });
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(payload.error ?? payload.message ?? 'API request failed');
+    throw new Error(payload.error ?? payload.message ?? "API request failed");
   }
 
   return payload;

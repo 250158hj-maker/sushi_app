@@ -1,11 +1,11 @@
-import CategoryTabs from '../components/CategoryTabs';
-import CheckoutModal from '../components/CheckoutModal';
-import MessageStack from '../components/MessageStack';
-import OrderSummary from '../components/OrderSummary';
-import ProductGrid from '../components/ProductGrid';
-import ProductModal from '../components/ProductModal';
-import SeatStatusCards from '../components/SeatStatusCards';
-import useOrderingPage from '../hooks/useOrderingPage';
+import CategoryTabs from "../components/CategoryTabs";
+import CheckoutModal from "../components/CheckoutModal";
+import MessageStack from "../components/MessageStack";
+import OrderSummary from "../components/OrderSummary";
+import ProductGrid from "../components/ProductGrid";
+import ProductModal from "../components/ProductModal";
+import SeatStatusCards from "../components/SeatStatusCards";
+import useOrderingPage from "../hooks/useOrderingPage";
 
 export default function OrderingPage() {
   const {
@@ -41,7 +41,6 @@ export default function OrderingPage() {
             {/* TODO: CategoryTabs を表示 */}
             {/* props: categories, selectedCategory, onChange */}
             CategoryTabs コンポーネントを表示
-
             <ProductGrid
               loading={isProductsLoading}
               products={products}
@@ -51,7 +50,10 @@ export default function OrderingPage() {
           </div>
 
           <div>
-            <SeatStatusCards seatNumber={seat.seatNumber} isOrderClosed={session.isOrderClosed} />
+            <SeatStatusCards
+              seatNumber={seat.seatNumber}
+              isOrderClosed={session.isOrderClosed}
+            />
 
             <OrderSummary
               orders={session.orders}
